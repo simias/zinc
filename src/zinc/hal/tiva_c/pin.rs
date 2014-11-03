@@ -93,15 +93,15 @@ impl Pin {
     // We can chose to drive each GPIO at either 2, 4 or 8mA. Default to 2mA for
     // now.
     // TODO(simias): make that configurable
-    self.regs.dr2r.set_dr2r(self.index, true);
+    self.regs.dr2r.set_dr2r(self.index, false);
     self.regs.dr4r.set_dr4r(self.index, false);
-    self.regs.dr8r.set_dr8r(self.index, false);
+    self.regs.dr8r.set_dr8r(self.index, true);
 
     // TODO(simias): configure open drain/pull up/pull down/slew rate if necessary
 
     self.regs.odr.set_odr(self.index, false);
     self.regs.pur.set_pur(self.index, false);
-    self.regs.pdr.set_pdr(self.index, false);
+    self.regs.pdr.set_pdr(self.index, true);
 
     // Enable GPIO
     self.regs.den.set_den(self.index, true);
